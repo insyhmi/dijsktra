@@ -1,0 +1,107 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Graph</title>
+		<meta charset = "utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="cytoscape.min.js"></script>
+		<script src="https://kit.fontawesome.com/a7a47eb1cc.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="modal" id="ModalVertex">
+			<div class="modal-content">
+				<span id="VertexModalClose" onclick="close_add_vertex_window()">
+					<i class="fa-solid fa-square-xmark"></i>
+				</span>
+				<p>
+					Some sample text here
+				</p>
+			</div>
+		</div>
+
+		<div class="modal" id="ModalEdge">
+			<div class="modal-content">
+				<span id="EdgeModalClose" onclick="close_add_edge_window()">
+					<i class="fa-solid fa-square-xmark"></i>
+				</span>
+				<p>
+					add Edge window
+				</p>
+			</div>
+		</div>
+		<div id = "cy">
+			<!--The main panel-->
+		</div>
+		<div id = "controls">
+			<h1>Dijkstra algorithm simulation</h1>
+			<h4>by lnxhm1</h4>
+
+			<input type="checkbox" id="directed-checkbox"> 
+			<label for="directed-checkbox">Directed graph</label>
+			<h2>Vertices</h2>
+			<div id='vertices-menu'>
+				<div data-vid='1'>
+					<button class="delete" onclick="remove_vertex(this.parentNode.getAttribute('data-vid'))">
+						<i class="fa-solid fa-square-xmark"></i>
+					</button>
+					<div class="vertex-description">ID: 1</div>
+				</div>
+				<div data-vid='2'>
+					<button class="delete" onclick="remove_vertex(this.parentNode.getAttribute('data-vid'))">
+						<i class="fa-solid fa-square-xmark"></i>
+					</button>
+					<div class="vertex-description">ID: 2</div>
+				</div>
+				<div data-vid='3'>
+					<button class="delete" onclick="remove_vertex(this.parentNode.getAttribute('data-vid'))">
+						<i class="fa-solid fa-square-xmark"></i>
+					</button>
+					<div class="vertex-description">ID: A comedically long name for css testing ig</div>
+				</div>
+				<div>
+					<button onclick="open_add_vertex_window()">Add Vertex</button>
+				</div>
+				<div>
+					Starting Vertex: <input id='starting-node'>
+				</div>
+			</div>
+			
+			<h2>Edges</h2>
+			<div id='edges-menu'>
+				<div data-eid="12">
+					<button class="delete">
+						<i class="fa-solid fa-square-xmark"></i>
+					</button> 
+					<div class="edge-description">
+						Source: 1 Target: 2 Weight: 2
+					</div>
+				</div>
+				<div data-eid="23">
+					<button class="delete">
+						<i class="fa-solid fa-square-xmark"></i>
+					</button>
+					<div class="edge-description">
+						Source: 2 Target: 3 Weight: 900
+					</div>
+				</div>
+			</div>
+			<div>
+				<button onclick="open_add_edge_window()">Add Edge</button>
+			</div>
+			<div id='control-buttons'>
+				<button>Run Simulation</button>
+				<button>Reset</button>
+				<button>Clear all</button>
+			</div>
+
+			<h2>Result distances</h2>
+
+			<div id="result">
+				resuilts go here it might be distance table 
+			</div>
+			hi 
+		</div>
+	</body>
+	<script src="script.js"></script> 
+</html>
