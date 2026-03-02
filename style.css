@@ -1,0 +1,112 @@
+*
+{
+	font-family: "Consolas";
+	box-sizing: border-box;
+}
+button
+{
+	display: inline;
+}
+#cy
+{
+	border: 2px solid #aaa;
+	border-top: none;
+	border-bottom: none;
+	width: 75%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+#controls
+{
+	width: 25%;
+	height: 100%;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	padding: 10px 10px;
+	overflow: auto;
+}
+#control-buttons
+{
+	display: flex;
+	flex-direction: column;
+	align-items: baseline;
+	margin: 20px 0px;
+	padding: 10px;
+	border: 2px solid #aaa;
+	border-radius: 5px;
+}
+#vertices-menu, #edges-menu
+{
+	margin: 10px 5px;
+	margin-bottom: 20px;
+}
+#vertices-menu>div, #edges-menu>div
+{
+	display: flex;
+	flex-direction: row;
+	margin: 10px 1px;
+	align-items: center;
+}
+div.vertex-description, div.edge-description
+{
+	margin: 2px 5px;
+	width: 100%;
+}
+button.delete-vbtn, button.delete-ebtn
+{
+	background: none;
+	padding: 0;
+	font-size: 15px;
+	border: none;
+}
+button.delete-vbtn:hover, button.delete-ebtn:hover
+{
+	cursor: pointer;
+	color: #d60505;
+}
+.errorspan
+{
+	color: red;
+	font-size: 15px;
+	display: block;
+	padding: 10px 0;
+}
+.modal 
+{
+	display: none; 
+	background-color: rgba(0,0,0,0.4); 
+	position: fixed;
+	z-index: 1; 
+	width: 100%; 
+	height: 100%; 
+	left: 0;
+	top: 0;
+	overflow: auto;
+}
+.modal-content
+{
+	margin: 15% auto;
+	background-color: white;
+	width: 50%;
+	max-width: 500px;
+	padding: 30px 40px;
+	position: relative;
+}
+#VertexModalClose, #EdgeModalClose 
+{
+	color: #aaaaaa;
+	font-size: 28px;
+	font-weight: bold;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+#VertexModalClose:hover, #VertexModalClose:focus, #EdgeModalClose:hover, #EdgeModalClose:focus{
+	color: #000;
+	cursor: pointer;
+	text-decoration: none;
+	cursor: pointer;
+}

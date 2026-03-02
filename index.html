@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Graph</title>
+		<meta charset = "utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="cytoscape.min.js"></script>
+		<script src="https://kit.fontawesome.com/a7a47eb1cc.js" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div class="modal" id="ModalVertex">
+			<div class="modal-content">
+				<span id="VertexModalClose" onclick="close_add_vertex_window()">
+					<i class="fa-solid fa-square-xmark"></i>
+				</span>
+				<h2>Add Vertex</h2>
+				<p>Vertex ID: </p>
+				<input id="vertex-id">
+				<button id="add-vertex-button">Add Vertex</button>
+				<div class="errorspan" id="add-vertex-error"></div>
+			</div>
+		</div>
+
+		<div class="modal" id="ModalEdge">
+			<div class="modal-content">
+				<span id="EdgeModalClose" onclick="close_add_edge_window()">
+					<i class="fa-solid fa-square-xmark"></i>
+				</span>
+				<h2>Add Edge</h2>
+				<p>Source: </p>
+				<input id="edge-source">
+				<p>Target: </p>
+				<input id="edge-target">
+				<p>Weight: </p>
+				<input id="edge-weight">
+				<button id="add-edge-button">Add Edge</button>
+				<div class="errorspan" id="add-edge-error"></div>
+			</div>
+		</div>
+		<div id = "cy">
+			<!--The main panel-->
+		</div>
+		<div id = "controls">
+			<h1>Dijkstra algorithm simulation</h1>
+			<h4>by lnxhm1</h4>
+
+			<input type="checkbox" id="directed-checkbox"> 
+			<label for="directed-checkbox">Directed graph</label>
+			<h2>Vertices</h2>
+			<div id='vertices-menu'>
+				<div>
+					Starting Vertex: <input id='starting-node'>
+				</div>
+				<div>
+					<button onclick="open_add_vertex_window()">Add Vertex</button>
+				</div>
+				<!--Template HTML in script-->
+			</div>
+			
+			<h2>Edges</h2>
+			<div id='edges-menu'>
+				<div>
+					<button onclick="open_add_edge_window()">Add Edge</button>
+				</div>
+				<!--Template HTML in script-->				
+			</div>
+			<div id='control-buttons'>
+				<button>Run Simulation</button>
+				<button>Reset</button>
+				<button>Clear all</button>
+			</div>
+
+			<h2>Result distances</h2>
+
+			<div id="result">
+				resuilts go here it might be distance table 
+			</div>
+			hi chch
+		</div>
+	</body>
+	<script src="script.js"></script> 
+</html>
