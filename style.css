@@ -1,16 +1,37 @@
-<<<<<<< HEAD
+:root
+{
+	--primary-color: #23cf79;
+	--border-color: #ddd;
+	--background-color: #121212;
+	--controls-background-color: #2c2c2c;
+}
 *
 {
 	font-family: "Consolas";
 	box-sizing: border-box;
 }
+html
+{
+	background-color: var(--background-color);
+	color: white;
+}
 button
 {
 	display: inline;
+	background-color: var(--controls-background-color);
+	color: white;
+	padding: 5px 10px;
+	margin: 5px 0;
+	border: 2px solid var(--border-color);
+	border-radius: 8px;
+}
+button:hover
+{
+	border: 2px solid var(--primary-color);
+	cursor: pointer;
 }
 #cy
 {
-	border: 2px solid #aaa;
 	border-top: none;
 	border-bottom: none;
 	width: 75%;
@@ -21,6 +42,7 @@ button
 }
 #controls
 {
+	background-color: var(--controls-background-color);
 	width: 25%;
 	height: 100%;
 	position: absolute;
@@ -36,8 +58,27 @@ button
 	align-items: baseline;
 	margin: 20px 0px;
 	padding: 10px;
-	border: 2px solid #aaa;
+	border: 2px solid var(--border-color);
 	border-radius: 5px;
+}
+input
+{
+	background: none;
+	margin: 2px 5px;
+	border: none;
+	border-bottom: 2px solid var(--border-color);
+	padding: 2px 5px;
+	color: white;
+}
+input:hover, input:focus
+{
+	border-bottom: 2px solid var(--primary-color);
+	outline: none;
+}
+input:focus
+{
+	background-color: var(--border-color);
+	color: black
 }
 #vertices-menu, #edges-menu
 {
@@ -60,6 +101,7 @@ button.delete-vbtn, button.delete-ebtn
 {
 	background: none;
 	padding: 0;
+	color: var(--border-color);
 	font-size: 15px;
 	border: none;
 }
@@ -85,12 +127,13 @@ button.delete-vbtn:hover, button.delete-ebtn:hover
 	height: 100%; 
 	left: 0;
 	top: 0;
-	overflow: auto;
+	overflow: auto;	
 }
 .modal-content
 {
 	margin: 15% auto;
-	background-color: white;
+	background-color: var(--background-color);
+	border: 2px solid var(--border-color);
 	width: 50%;
 	max-width: 500px;
 	padding: 30px 40px;
@@ -98,7 +141,7 @@ button.delete-vbtn:hover, button.delete-ebtn:hover
 }
 #VertexModalClose, #EdgeModalClose 
 {
-	color: #aaaaaa;
+	color: white;
 	font-size: 28px;
 	font-weight: bold;
 	position: absolute;
@@ -106,113 +149,8 @@ button.delete-vbtn:hover, button.delete-ebtn:hover
 	right: 10px;
 }
 #VertexModalClose:hover, #VertexModalClose:focus, #EdgeModalClose:hover, #EdgeModalClose:focus{
-	color: #000;
+	color: var(--primary-color);
 	cursor: pointer;
 	text-decoration: none;
 	cursor: pointer;
-=======
-*
-{
-	font-family: "Consolas";
-	box-sizing: border-box;
-}
-button
-{
-	display: inline;
-}
-#cy
-{
-	border: 2px solid #aaa;
-	border-top: none;
-	border-bottom: none;
-	width: 75%;
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-}
-#controls
-{
-	width: 25%;
-	height: 100%;
-	position: absolute;
-	top: 0px;
-	right: 0px;
-	padding: 10px 10px;
-	overflow: auto;
-}
-#control-buttons
-{
-	display: flex;
-	flex-direction: column;
-	align-items: baseline;
-	margin: 20px 0px;
-	padding: 10px;
-	border: 2px solid #aaa;
-	border-radius: 5px;
-}
-#vertices-menu, #edges-menu
-{
-	margin: 10px 5px;
-	margin-bottom: 20px;
-}
-#vertices-menu>div, #edges-menu>div
-{
-	display: flex;
-	flex-direction: row;
-	margin: 10px 1px;
-	align-items: center;
-}
-div.vertex-description, div.edge-description
-{
-	margin: 2px 5px;
-	width: 100%;
-}
-button.delete
-{
-	background: none;
-	padding: 0;
-	font-size: 15px;
-	border: none;
-}
-button.delete:hover
-{
-	cursor: pointer;
-	color: #d60505;
-}
-.modal 
-{
-	display: none; 
-	background-color: rgba(0,0,0,0.4); 
-	position: fixed;
-	z-index: 1; 
-	width: 100%; 
-	height: 100%; 
-	left: 0;
-	top: 0;
-	overflow: auto;
-}
-.modal-content
-{
-	margin: 15% auto;
-	background-color: white;
-	width: 50%;
-	padding: 50px;
-	position: relative;
-}
-#VertexModalClose, #EdgeModalClose 
-{
-	color: #aaaaaa;
-	font-size: 28px;
-	font-weight: bold;
-	position: absolute;
-	top: 10px;
-	right: 10px;
-}
-#VertexModalClose:hover, #VertexModalClose:focus, #EdgeModalClose:hover, #EdgeModalClose:focus{
-	color: #000;
-	cursor: pointer;
-	text-decoration: none;
-	cursor: pointer;
->>>>>>> dbfed914e834014325f84179e60742a4d2950d7a
 }
