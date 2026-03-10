@@ -78,9 +78,10 @@ var cy = cytoscape(
 		{
 			selector: 'node',
 			style: {
-				'label': 'data(id)',
+				'label': 'data(label)',
 				'background-color': default_node_color,
-				'color' : 'white'
+				'color' : 'white',
+				'text-wrap' : 'wrap'
 			}
 		},
 		{
@@ -131,6 +132,10 @@ async function dijkstra()
 	});
 	previous_node = {};
 	previous_edge = {};
+	cy.nodes().forEach(function(n) {
+		n.data('label', `${n.id()}\ninf`);
+	})
+	cy.$id(starting_vertex).data('label', `${starting_vertex}\n0`);
 	shortest[starting_vertex] = 0;
 	pq.push(0, starting_vertex);
 	while (!pq.isEmpty()){
@@ -140,19 +145,20 @@ async function dijkstra()
 		if (shortest[node] < distance) continue;
 		cyNode = cy.$id(node);
 		cyNode.style('background-color', "red");
-		await sleep(300);
+		await sleep(1000);
 		neighbours = adjacency_list.get(node);
 		for (let it of neighbours){
 			let tn = cy.$id(it.target);
 			tn.style("background-color", "yellow");
-			await sleep(300);
+			await sleep(1000);
 			if (shortest[node] + it.weight < shortest[it.target]){
 				shortest[it.target] = shortest[node] + it.weight;
 				previous_node[it.target] = node;
 				previous_edge[it.target] = it.uid;
+				cy.$id(it.target).data('label', `${it.target}\n${shortest[it.target]}`);
 				pq.push(shortest[it.target], it.target);
 				tn.style('background-color', '#1dd1a1'); 
-                await sleep(200);
+                await sleep(1000);
 			}
 			tn.style("background-color", default_node_color);
 		}
@@ -305,7 +311,10 @@ add_vertex_button.addEventListener("click", function() {
 	if (cy.$id(new_vid).empty()){
 		cy.add({
 			group: 'nodes',
-			data: {id: new_vid},
+			data: {
+				id: new_vid,
+				label: new_vid
+			},
 			position: {x: cy_width/2, y: cy_height/2}
 		});
 		graph_undirected.set(new_vid, new Array());
@@ -368,22 +377,23 @@ add_edge_button.addEventListener("click", function() {
 
 reset_graph_button.addEventListener('click', function (e) {
 	cy.elements.remove();
-});
-fit_view.addEventListener('click', function(e) {
-	cy.fit();
 	vertices_menu.innerHTML = `
-	<div>
-		Starting Vertex: <input id='starting-vertex'>
-	</div>
-	<div>
-		<button onclick="open_add_vertex_window()">Add Vertex</button>
-	</div>`;
+		<div>
+			Starting Vertex: <input id='starting-vertex'>
+		</div>
+		<div>
+			<button onclick="open_add_vertex_window()">Add Vertex</button>
+		</div>`;
 	edges_menu.innerHTML = `
-	<div>
-		<button onclick="open_add_edge_window()">Add Edge</button>
-	</div>`;
+		<div>
+			<button onclick="open_add_edge_window()">Add Edge</button>
+		</div>`;
 	graph_directed.clear();
 	graph_undirected.clear();
+});
+
+fit_view.addEventListener('click', function(e) {
+	cy.fit();
 });
 
 table.addEventListener('click', function(event) {
