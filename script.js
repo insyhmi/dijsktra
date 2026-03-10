@@ -58,6 +58,9 @@ const default_node_color = "#06aa58";
 const reset_graph_button = document.getElementById("reset");
 const fit_view = document.getElementById("fit-view");
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+async function delay(ms) {sleep(ms);}
+
 var graph_undirected = new Map();
 var graph_directed = new Map();
 var previous_node = {};
@@ -97,7 +100,7 @@ var cy = cytoscape(
   	]	
 });
 
-function dijkstra()
+async function dijkstra()
 {
 	if (starting_vertex_input.value == ""){
 		alert("Please put a valid starting vertex");
@@ -105,7 +108,7 @@ function dijkstra()
 	}
 	var adjacency_list;
 	var starting_vertex = starting_vertex_input.value;	
-	var e, node, distance;
+	var e, node, distance, cyNode, neighbours;
 	let pq = new PriorityQueue();
 	let html_snippet = `
 		<tr>
@@ -135,14 +138,25 @@ function dijkstra()
 		node = e.target;
 		distance = e.weight;
 		if (shortest[node] < distance) continue;
-		adjacency_list.get(node).forEach(it => {
+		cyNode = cy.$id(node);
+		cyNode.style('background-color', "red");
+		await sleep(300);
+		neighbours = adjacency_list.get(node);
+		for (let it of neighbours){
+			let tn = cy.$id(it.target);
+			tn.style("background-color", "yellow");
+			await sleep(300);
 			if (shortest[node] + it.weight < shortest[it.target]){
 				shortest[it.target] = shortest[node] + it.weight;
 				previous_node[it.target] = node;
 				previous_edge[it.target] = it.uid;
 				pq.push(shortest[it.target], it.target);
+				tn.style('background-color', '#1dd1a1'); 
+                await sleep(200);
 			}
-		});
+			tn.style("background-color", default_node_color);
+		}
+		cyNode.style("background-color", default_node_color);
 	}
 	edited = false;
 	Object.entries(shortest).forEach(([node, d]) => {
@@ -294,8 +308,8 @@ add_vertex_button.addEventListener("click", function() {
 			data: {id: new_vid},
 			position: {x: cy_width/2, y: cy_height/2}
 		});
-		graph_undirected.set(new_vid, Array());
-		graph_directed.set(new_vid, Array());
+		graph_undirected.set(new_vid, new Array());
+		graph_directed.set(new_vid, new Array());
 		add_vertex_error.innerHTML = "";
 		vertices_menu.insertAdjacentHTML('beforeend', htmlSnippet);
 		close_add_vertex_window();
@@ -342,7 +356,6 @@ add_edge_button.addEventListener("click", function() {
 	});
 	let directed_pair = new Pair(Number(weight), target, eid);
 	let invert_pair = new Pair(Number(weight), source, eid);
-	console.log(directed_pair + "\n" + invert_pair);
 	// Directed 
 	graph_directed.get(source).push(directed_pair);
 	// Undirected

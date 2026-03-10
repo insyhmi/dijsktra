@@ -31,11 +31,17 @@ button
 	margin: 5px 0;
 	border: 2px solid var(--border-color);
 	border-radius: 8px;
+	transition: border 0.1s, transform 0.1s;
 }
 button:hover
 {
 	border: 2px solid var(--primary-color);
 	cursor: pointer;
+	transform: translateY(-2px);
+}
+button:active
+{
+	transform: translateY(4px);
 }
 #cy
 {
